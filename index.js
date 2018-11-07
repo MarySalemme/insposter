@@ -1,17 +1,13 @@
 const express = require('express');
-const dotenv = require('dotenv');
-const axios = require('axios');
+const dotenv = require('dotenv').config();
 const _ = require('lodash');
 const bodyParser = require('body-parser');
-const API_KEY = 'tnHYF9zBR9Kuv2QWa6n5o2mFS1xMjA64';
 
 const { womenPioneers, quotes, videos } = require('./data')
 
-dotenv.config();
 
 const app = express();
 
-// app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -19,8 +15,9 @@ const port = 8080;
 
 app.listen(port, () => console.log(`imposter listening on ${port}`));
 
+app.get('/', (req, res) => { res.send('\n 👋 🌍 \n') })
+
 app.post('/', (req, res) => {
-  // console.log('body', req.body);
   const { text } = req.body;
   const data = {
     form: {
